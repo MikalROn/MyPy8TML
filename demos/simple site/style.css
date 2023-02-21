@@ -1,0 +1,32 @@
+body{
+       pading: 0
+        }
+            .cabeçalho{
+
+            }
+            h1{
+                font-size: 1.75rem;
+                line-height: 2.25rem;
+                font-family: ReithSerif, Helvetica, Arial, sans-serif;
+                font-weight: 500;
+                font-style: normal;
+                color: rgb(20, 20, 20);
+                display: block;
+                margin: 0px;
+                padding: 2rem 0px;
+                overflow-wrap: anywhere;
+                }
+
+            ul {
+            pading: 0;
+            height: 100%;
+            background-color: rgb(300, 300, 300);
+            width: 200px;
+            }
+            li {
+            pading: 0;
+            background-color: rgb(184, 0, 0);
+            height: 100px;
+            width: 100%;
+            position: relative;
+        }
