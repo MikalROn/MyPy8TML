@@ -26,13 +26,19 @@ class MyPy8TML:
         self._html += other
         return self
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.to_html(__name__, path='templats')
+
     def _verify_html(self) -> None:
-        if len( self._html ) <= 0:
-            raise ValueError( 'There is no tags to put content inside.' )
+        if len(self._html) <= 0:
+            raise ValueError('There is no tags to put content inside.')
 
     def _get_final_atribut(self):
-        if len( self._close ) > 0:
-            return self._final_atribut == self._close[-1].replace( '/', '' )
+        if len(self._close) > 0:
+            return self._final_atribut == self._close[-1].replace('/', '')
         return False
 
     def in_content(self, content: str):
@@ -53,16 +59,16 @@ class MyPy8TML:
         :argument item[1]:      if == 'in' put the content inside a tag if == 'out' contents go out
         """
         self._verify_html()
-        if type( item ) == tuple:
+        if type(item) == tuple:
             content, kind = item
             if kind == 'in':
-                return self.in_content( content )
+                return self.in_content(content)
             elif kind == 'out':
-                return self.content( content )
+                return self.content(content)
             else:
-                raise ValueError( f'kind {kind} doesent exist!' )
+                raise ValueError(f'kind {kind} doesent exist!')
         else:
-            return self.content( item )
+            return self.content(item)
 
     def downline(self, times: int = 1):
         """
@@ -617,8 +623,54 @@ class MyPy8TML:
         self.in_content( f'href="{value}"' )
         return self
 
+    # Jinja in
+
+    def jnj_expretion(self, expretion):
+        self.content( "{{ " + expretion + " }}" )
+        return self
+
+    def jnj_comand(self, comand):
+        self.content( "{% " + comand + " %}" )
+        return self
+
+    def jnj_coment(self, coment):
+        self.content( "{# " + coment + " #}" )
+        return self
+
+    def jnj_if(self, expretion):
+        self.content( "{% if " + expretion + "%}" )
+        return self
+
+    def jnj_elif(self, expretion):
+        self.content( "{% elif " + expretion + " %}" )
+        return self
+
+    def jnj_else(self):
+        self.content( "{% else %}" )
+        return self
+
+    def jnj_endif(self):
+        self.content( "{% endif %}" )
+        return self
+
+    def jnj_block(self, name: str):
+        self.content( "{%" + name + "%}" )
+        return self
+
+    def jnj_endblock(self):
+        self.content( "{% endblock %}" )
+        return self
+
+    def jnj_extends_temp(self, template: str):
+        self.content( "{% extends " + template + " %}" )
+        return self
+
+    def jnj_include_temp(self, template: str):
+        self.content( "{% include " + template + " %}" )
+        return self
+
     def init_html(self, title, lang: str, charset="UTF-8"):
-        html = self \
+        _ = self \
             .doctype() \
             .html[f'lang="{lang}"', 'in']()\
             .head\
@@ -631,6 +683,10 @@ class MyPy8TML:
         with open(style_path, 'rt', encoding=encoding) as file:
             css: str = file.read()
             _ = self.style[css]()
+
+    def to_html(self, name, path='') -> None:
+        with open(f'{path}/{name}', 'w') as arq:
+            arq.write(self.generete())
 
 
     dnl = downline

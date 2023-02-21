@@ -1,0 +1,40 @@
+Comando;Descrição
+{{ expressão }};Renderiza uma expressão como texto
+{% comando %};Executa um comando como um loop ou uma condicional
+{# comentário #};Adiciona um comentário que é ignorado pelo Jinja
+{% if expressão %};Inicia uma estrutura condicional
+{% elif expressão %};Adiciona uma condição alternativa a um bloco if
+{% else %};Adiciona um bloco de código que é executado se a expressão do bloco if ou elif não for verdadeira
+{% endif %};Encerra um bloco if
+{% for item in lista %};Inicia um loop que itera sobre uma lista
+{% else %};Adiciona um bloco de código que é executado se o loop não iterar sobre nenhum item
+{% endfor %};Encerra um loop
+{% while expressão %};Inicia um loop while
+{% endwhile %};Encerra um loop while
+{% do expressão %};Executa uma expressão sem renderizar o resultado
+{% set variável = valor %};Define uma variável no escopo atual
+{% set variável %};Define uma variável com um valor padrão (None)
+{% block nome %};Inicia um bloco de conteúdo nomeado que pode ser estendido em outro template
+{% endblock %};Encerra um bloco
+{% extends template %};Indica que o template atual estende um template pai e pode substituir os blocos definidos pelo template pai
+{% include template %};Inclui um template em outro
+{% from "template.html" import variavel %};Importa uma variável de outro template
+{% macro nome(parametros) %};Define uma macro reutilizável
+{% endmacro %};Encerra uma macro
+{{ expressão | filtro }};Renderiza uma expressão após aplicar um filtro
+{{ expressão | filtro(arg1, arg2, ...) }};Renderiza uma expressão após aplicar um filtro com argumentos
+{{ expressão | filtro1 | filtro2 }};Renderiza uma expressão após aplicar dois filtros em sequência
+{% set variável = expressão | filtro %};Define uma variável após aplicar um filtro a uma expressão
+{% include "template.html" with variável1=valor1 variável2=valor2 %};Inclui um template e define valores para as variáveis no momento da inclusão
+{% if variável is defined %};Verifica se uma variável está definida
+{% if variável is not defined %};Verifica se uma variável não está definida
+{% if variável is none %};Verifica se uma variável é nula
+{% if variável is not none %};Verifica se uma variável não é nula
+{% if variável is iterable %};Verifica se uma variável é iterável
+{% if variável is not iterable %};Verifica se uma variável não é iterável
+{% if variável is even %};Verifica se uma variável é par
+{% if variável is odd %};Verifica se uma variável é ímpar
+{% if variável is divisibleby(numero) %};Verifica se uma variável é divisível por um número
+{% if variável is sameas(outra_variavel) %};Verifica se duas variáveis são idênticas
+{% filter nome_do_filtro %};Aplica um filtro a um bloco de código
+{% endfilter %};Acaba filtro
