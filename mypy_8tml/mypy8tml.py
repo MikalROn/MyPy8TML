@@ -6,7 +6,7 @@ class MyPy8TML:
 
     def generete(self) -> str:
         """ This method generetes the html final code. """
-        return self._html + ''.join( self._close )
+        return self._html + '\n'.join(self._close[::-1])
 
     def content(self, content: str):
         """ Add content to main html code """
@@ -357,6 +357,11 @@ class MyPy8TML:
         return self
 
     @property
+    def li(self):
+        self._tag( "<td>", is_open=True )
+        return self
+
+    @property
     def ul(self):
         self._tag( "<ul>", is_open=True )
         return self
@@ -509,116 +514,116 @@ class MyPy8TML:
     # Atributos html
 
     def in_alt(self, value: str):
-        self.in_content( f'alt: "{value}"' )
+        self.in_content( f'alt="{value}"' )
         return self
 
     def in_method(self, value: str):
-        self.in_content( f'method: "{value}"' )
+        self.in_content( f'method="{value}"' )
         return self
 
     def in_type(self, value: str):
-        self.in_content( f'type: "{value}"' )
+        self.in_content( f'type="{value}"' )
         return self
 
     def in_title(self, value: str):
-        self.in_content( f'title: "{value}"' )
+        self.in_content( f'title="{value}"' )
         return self
 
     def in_bgcolor(self, value: str):
-        self.in_content( f'bgcolor: "{value}"' )
+        self.in_content( f'bgcolor="{value}"' )
         return self
 
     def in_src(self, value: str):
-        self.in_content( f'src: "{value}"' )
+        self.in_content( f'src="{value}"' )
         return self
 
     def in_width(self, value: str):
-        self.in_content( f'width: "{value}"' )
+        self.in_content( f'width="{value}"' )
         return self
 
     def in_colspan(self, value: str):
-        self.in_content( f'colspan: "{value}"' )
+        self.in_content( f'colspan="{value}"' )
         return self
 
     def in_cols(self, value: str):
-        self.in_content( f'cols: "{value}"' )
+        self.in_content( f'cols="{value}"' )
         return self
 
     def in_rows(self, value: str):
-        self.in_content( f'rows: "{value}"' )
+        self.in_content( f'rows="{value}"' )
         return self
 
     def in_accesskey(self, value: str):
-        self.in_content( f'accesskey: "{value}"' )
+        self.in_content( f'accesskey="{value}"' )
         return self
 
     def in_border(self, value: str):
-        self.in_content( f'border: "{value}"' )
+        self.in_content( f'border="{value}"' )
         return self
 
     def in_class(self, value: str):
-        self.in_content( f'class: "{value}"' )
+        self.in_content( f'class="{value}"' )
         return self
 
     def in_action(self, value: str):
-        self.in_content( f'action: "{value}"' )
+        self.in_content( f'action="{value}"' )
         return self
 
     def in_rowspan(self, value: str):
-        self.in_content( f'rowspan: "{value}"' )
+        self.in_content( f'rowspan="{value}"' )
         return self
 
     def in_value(self, value: str):
-        self.in_content( f'value: "{value}"' )
+        self.in_content( f'value="{value}"' )
         return self
 
     def in_lang(self, value: str):
-        self.in_content( f'lang: "{value}"' )
+        self.in_content( f'lang="{value}"' )
         return self
 
     def in_style(self, value: str):
-        self.in_content( f'style: "{value}"' )
+        self.in_content( f'style="{value}"' )
         return self
 
     def in_cellpadding(self, value: str):
-        self.in_content( f'cellpadding: "{value}"' )
+        self.in_content( f'cellpadding="{value}"' )
         return self
 
     def in_height(self, value: str):
-        self.in_content( f'height: "{value}"' )
+        self.in_content( f'height="{value}"' )
         return self
 
     def in_cellspacing(self, value: str):
-        self.in_content( f'cellspacing: "{value}"' )
+        self.in_content( f'cellspacing="{value}"' )
         return self
 
     def in_target(self, value: str):
-        self.in_content( f'target: "{value}"' )
+        self.in_content( f'target="{value}"' )
         return self
 
     def in_id(self, value: str):
-        self.in_content( f'id: "{value}"' )
+        self.in_content( f'id="{value}"' )
         return self
 
     def in_tabindex(self, value: str):
-        self.in_content( f'tabindex: "{value}"' )
+        self.in_content( f'tabindex="{value}"' )
         return self
 
     def in_name(self, value: str):
-        self.in_content( f'name: "{value}"' )
+        self.in_content( f'name="{value}"' )
         return self
 
     def in_href(self, value: str):
-        self.in_content( f'href: "{value}"' )
+        self.in_content( f'href="{value}"' )
         return self
 
     def init_html(self, title, lang: str, charset="UTF-8"):
         html = self \
             .doctype() \
-            .html[f'lang="{lang}"', 'in']() \
-            .head \
-            .meta[f'charset="{charset}"', 'in']() \
-            .title[title]( 2 ) \
+            .html[f'lang="{lang}"', 'in']()\
+            .head\
+            .meta[f'charset="{charset}"', 'in']()\
+            .title[title](2)\
             .body
         return self
 

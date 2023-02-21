@@ -1,7 +1,3 @@
-import pandas as pd
-
-
-df = pd.read_csv( 'data4scripts/elementos_html.csv', sep=',' ).replace( {'Não': True, 'Sim': False} )
 css = ['class,id,style,accesskey,tabindex,title,lang',
        'class,id,style,accesskey,tabindex,title',
        'class,id,style,accesskey,tabindex,title,bgcolor',
@@ -30,7 +26,7 @@ atributos = ['alt', 'method', 'type', 'title',
 for item in atributos:
     print(
         f'def in_{item}(self, value: str):\n' +
-        "  self.in_content(f'" + item + ': ' + '"{value}"' + "')\n" +
+        "  self.in_content(f'" + item + '=' + '"{value}"' + "')\n" +
         f'  return self'
     )
 
