@@ -1,0 +1,77 @@
+Categoria,Tag,Auto-fechável?
+Conteúdo de Texto,<h1>,Não
+Conteúdo de Texto,<h2>,Não
+Conteúdo de Texto,<h3>,Não
+Conteúdo de Texto,<h4>,Não
+Conteúdo de Texto,<h5>,Não
+Conteúdo de Texto,<h6>,Não
+Conteúdo de Texto,<p>,Não
+Conteúdo de Texto,<a>,Não
+Conteúdo de Texto,<strong>,Não
+Conteúdo de Texto,<em>,Não
+Conteúdo de Texto,<small>,Não
+Conteúdo de Texto,<s>,Não
+Conteúdo de Texto,<q>,Não
+Conteúdo de Texto,<cite>,Não
+Conteúdo de Texto,<dfn>,Não
+Conteúdo de Texto,<abbr>,Não
+Conteúdo de Texto,<data>,Não
+Conteúdo de Texto,<time>,Não
+Conteúdo de Texto,<code>,Não
+Conteúdo de Texto,<var>,Não
+Conteúdo de Texto,<samp>,Não
+Conteúdo de Texto,<kbd>,Não
+Conteúdo de Texto,<sup>,Não
+Conteúdo de Texto,<sub>,Não
+Conteúdo de Texto,<i>,Não
+Conteúdo de Texto,<b>,Não
+Conteúdo de Texto,<u>,Não
+Conteúdo de Texto,<mark>,Não
+Conteúdo Incorporado,<img>,Sim
+Conteúdo Incorporado,<video>,Não
+Conteúdo Incorporado,<audio>,Não
+Conteúdo Incorporado,<source>,Sim
+Conteúdo Incorporado,<track>,Sim
+Conteúdo Incorporado,<map>,Não
+Conteúdo Incorporado,<area>,Sim
+Conteúdo Incorporado,<object>,Não
+Conteúdo Incorporado,<embed>,Sim
+Conteúdo Incorporado,<iframe>,Não
+Conteúdo Incorporado,<canvas>,Não
+Conteúdo Incorporado,<svg>,Não
+Tabelas,<table>,Não
+Tabelas,<thead>,Não
+Tabelas,<tbody>,Não
+Tabelas,<tfoot>,Não
+Tabelas,<tr>,Não
+Tabelas,<th>,Não
+Tabelas,<td>,Não
+Tabelas,<col>,Sim
+Tabelas,<colgroup>,Não
+Tabelas,<caption>,Não
+Formulários,<form>,Não
+Formulários,<input>,Sim
+Formulários,<button>,Não
+Formulários,<select>,Não
+Formulários,<datalist>,Não
+Formulários,<optgroup>,Não
+Formulários,<option>,Não
+Formulários,<textarea>,Não
+Formulários,<label>,Não
+Formulários,<fieldset>,Não
+Formulários,<legend>,Não
+Formulários,<output>,Não
+Formulários,<progress>,Não
+Formulários,<meter>,Não
+Metadados e Scripts,<head>,Não
+Metadados e Scripts,<title>,Não
+Metadados e Scripts,<meta>,Sim
+Metadados e Scripts,<style>,Não
+Metadados e Scripts,<link>,Sim
+Metadados e Scripts,<script>,Não
+Metadados e Scripts,<noscript>,Não
+Metadados e Scripts,<template>,Não
+Metadados e Scripts,<slot>,Não
+Formatação e marcação<div>,Não
+Formatação e marcação,<body>,Não
+
