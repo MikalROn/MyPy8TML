@@ -1,8 +1,8 @@
 from mypy_8tml import MyPy8TML
 from random import Random
 
-class Test:
 
+class Test:
     def test_downline_inline_close(self):
         html = MyPy8TML()
         html.p(-1).p(-1)
@@ -13,11 +13,10 @@ class Test:
         html = MyPy8TML()
         expected = ''
         for n in range(num):
-            _ = html.p
+            _ = html.p(-1)
             expected += '<p></p>'
 
-        assert html(-num).generate() == expected
-
+        assert html.generate() == expected
 
     def test_downline_no_agrs(self):
         html = MyPy8TML()
@@ -73,6 +72,13 @@ class Test:
                    f'</body>'
 
         assert html.generate() == expected
+
+    def test_if_MyPy8TML_can_recive_other_MyPy8TML(self):
+        html1 = MyPy8TML()
+        html2 = MyPy8TML()
+        p = html1.p['test'].generate()
+        p2 = html2.p[p].generate()
+        assert p2 == '<p><p>test</p></p>'
 
     def test_p(self):
         html = MyPy8TML()
@@ -148,6 +154,11 @@ class Test:
         html = MyPy8TML()
         dfn = html.dfn.generate()
         assert dfn == "<dfn></dfn>"
+
+    def nav(self):
+        html = MyPy8TML()
+        nav = html.nav.generate()
+        assert nav == "<nav></nav>"
 
     def test_abbr(self):
         html = MyPy8TML()
