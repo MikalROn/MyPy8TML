@@ -10,7 +10,7 @@ register.div.in_class('flex-box')\
             .h1[' Just a simple form']()\
             .p['e-mail :'](-1).input.in_type('email')()\
             .p['password :'](-1).input.in_type('password')()\
-            .button.in_type('submit')['submit']()\
+            .button.in_type('submit')['submit']()
 
 contato = MyPy8TML()
 
