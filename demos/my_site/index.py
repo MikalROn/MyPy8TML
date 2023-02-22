@@ -2,7 +2,7 @@ from mypy_8tml import MyPy8TML
 
 
 
-with MyPy8TML(file_name='index') as index:
+with MyPy8TML(file_name='index', path='templates') as index:
     code = \
         index\
             .div\

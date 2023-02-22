@@ -11,7 +11,11 @@ class MyPy8TML:
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        self.to_html(self._file_name, path=self._path)
+        if self._path:
+            self.to_html(self._file_name, path=self._path)
+        else:
+            self.to_html( self._file_name, path='')
+
 
     def __enter__(self):
         return self
