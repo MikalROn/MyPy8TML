@@ -1,16 +1,17 @@
 class MyPy8TML:
-    def __init__(self, file_name: str= None):
+    def __init__(self, file_name: str = None, path: str = None):
         self._html = ''
         self._close = []
         self._final_atribut = None
         self._file_name: str = file_name
+        self._path = path
 
     def __add__(self, other: str):
         self._html += other
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        self.to_html(self._file_name)
+        self.to_html(self._file_name, path=self._path)
 
     def __enter__(self):
         return self
@@ -689,8 +690,8 @@ class MyPy8TML:
             css: str = file.read()
             _ = self.style[css]()
 
-    def to_html(self, name, path='') -> None:
-        with open(f'{path}/{name}.html', 'wb') as arq:
+    def to_html(self, name: str, path: str='') -> None:
+        with open(f'{path}{name}.html', 'w') as arq:
             arq.write(self.generete())
 
     dnl = downline
