@@ -1,4 +1,5 @@
 class MyPy8TML:
+    """ Generete html using comands on  python """
     def __init__(self, file_name: str = None, path: str = None):
         self._html = ''
         self._close = []
@@ -14,8 +15,7 @@ class MyPy8TML:
         if self._path:
             self.to_html(self._file_name, path=self._path)
         else:
-            self.to_html( self._file_name, path='')
-
+            self.to_html(self._file_name, path='')
 
     def __enter__(self):
         return self
@@ -38,7 +38,7 @@ class MyPy8TML:
         else:
             return self.content(item)
 
-    def __call__(self, times: int = 1):
+    def __call__(self, times: int = 1, inline: str = '-'):
         if self._get_final_atribut():
             self.dnl(times)
             return self
@@ -69,6 +69,7 @@ class MyPy8TML:
         return self
 
     def _verify_html(self) -> None:
+        """ Verifica se hmtl esta vazio """
         if len(self._html) <= 0:
             raise ValueError('There is no tags to put content inside.')
 
@@ -91,23 +92,35 @@ class MyPy8TML:
     def downline(self, times: int = 1):
         """
         This method allows to close a tag
-        :param times:               Number of tags that you want to close
+        :param times:               Number of tags that you want to go down in a code
+                                    if negative close tag inline
         :return:                    self
         """
         self._verify_html()
-        for time in range( times ):
-            content = self._close.pop( -1 )
-            self._html += f'{content}\n'
+        if times < 0:
+            for time in range(times):
+                content = self._close.pop(-1)
+                self._html += f'{content}\n'
+        else:
+            for time in range(times):
+                content = self._close.pop(-1)
+                self._html += f'{content}'
         return self
 
     def simple_down(self, times: int = 1):
         """
         This method allows to just jump for next line
         :param times:           Number of tags that you want to go down in a code
+                                if negative close tag inline
         :return: self
         """
-        for time in range( times ):
-            self._html += f'\n'
+        if times < 0:
+            for time in range(times):
+                self._html += f'\n'
+        else:
+            times = times * -1
+            for times in range(times):
+                self._html += f'\n'
         return self
 
     def _tag(self, tag, is_open: bool = True):
@@ -633,7 +646,7 @@ class MyPy8TML:
         self.in_content( f'href="{value}"' )
         return self
 
-    # Jinja in
+    # Jinja in code
 
     def jnj_expretion(self, expretion):
         self.content( "{{ " + expretion + " }}" )
@@ -680,6 +693,22 @@ class MyPy8TML:
         return self
 
     def init_html(self, title, lang: str, charset="UTF-8"):
+        """
+        Generates the stat of a html code until the bod
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Title</title>
+        </head>
+        <body> {UNTIL HERE}
+
+        :param title:               title of your html page
+        :param lang:                 lang of html
+        :param charset:              charset of html
+        :return:                     self
+        """
         _ = self \
             .doctype() \
             .html[f'lang="{lang}"', 'in']()\
@@ -690,9 +719,16 @@ class MyPy8TML:
         return self
 
     def import_style(self, style_path, encoding='UTF-8'):
+        """
+        Import style from css code
+        :param style_path:             Path to the css code
+        :param encoding:               encoding of css code
+        :return:                       return self
+        """
         with open(style_path, 'rt', encoding=encoding) as file:
             css: str = file.read()
             _ = self.style[css]()
+        return self
 
     def to_html(self, name: str, path: str='') -> None:
         with open(f'{path}{name}.html', 'w') as arq:
