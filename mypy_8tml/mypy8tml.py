@@ -62,6 +62,7 @@ class MyPy8TML:
 
     def generate(self) -> str:
         """ This method generetes the html final code. """
+        self._verify_html()
         return self._html + '\n'.join(self._close[::-1])
 
     def content(self, content: str):
@@ -84,7 +85,7 @@ class MyPy8TML:
 
     def _verify_html(self) -> None:
         """ Verify if the hmtl was empty """
-        if len(self._html) <= 0:
+        if len(self._html) == 0:
             raise ValueError('There is no tags to put content inside.')
 
     def _verify_if_are_close(self) -> None:
@@ -698,48 +699,60 @@ class MyPy8TML:
 
     # Jinja in code
 
+    def jnj(self, expretion):
+        self.content("{ " + expretion + " }\n")
+        return self
+
+    def jnj_add_bootstrap(self):
+        self.jnj_block('bootstrat')\
+            .jnj_expretion('super()') \
+            .jnj_expretion('bootstrap.load_css()')\
+            .jnj_expretion('bootstrap.load_js()')\
+            .jnj_endblock()
+        return self
+
     def jnj_expretion(self, expretion):
-        self.content("{{ " + expretion + " }}")
+        self.content("{{ " + expretion + " }}\n")
         return self
 
     def jnj_comand(self, comand):
-        self.content("{% " + comand + " %}")
+        self.content("{% " + comand + " %}\n")
         return self
 
     def jnj_coment(self, coment):
-        self.content("{# " + coment + " #}")
+        self.content("{# " + coment + " #}\n")
         return self
 
     def jnj_if(self, expretion):
-        self.content("{% if " + expretion + "%}")
+        self.content("{% if " + expretion + "%}\n")
         return self
 
     def jnj_elif(self, expretion):
-        self.content( "{% elif " + expretion + " %}" )
+        self.content( "{% elif " + expretion + " %}\n" )
         return self
 
     def jnj_else(self):
-        self.content( "{% else %}" )
+        self.content( "{% else %}\n" )
         return self
 
     def jnj_endif(self):
-        self.content("{% endif %}")
+        self.content("{% endif %}\n")
         return self
 
     def jnj_block(self, name: str):
-        self.content("{%" + name + "%}")
+        self.content("{%" + name + "%}\n")
         return self
 
     def jnj_endblock(self):
-        self.content("{% endblock %}")
+        self.content("{% endblock %}\n")
         return self
 
     def jnj_extends_temp(self, template: str):
-        self.content("{% extends " + template + " %}")
+        self.content("{% extends " + template + " %}\n")
         return self
 
     def jnj_include_temp(self, template: str):
-        self.content("{% include " + template + " %}")
+        self.content("{% include " + template + " %}\n")
         return self
 
     def init_html(self, title, lang: str, charset="UTF-8", inhead: str = ''):
