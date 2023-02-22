@@ -1,6 +1,21 @@
 import pandas as pd
 
 df = pd.read_csv('data4scripts/jinja.csv', sep=';')
+fd = pd.read_csv('data4scripts/elementos_html.csv')
+
+for tag in fd.itertuples():
+    stag = tag[2].replace('<', '').replace('>', '')
+    if tag[3] != 'Sim':
+        expected = f'"<{stag}></{stag}>"'
+    else:
+        expected = f'"<{stag}>"'
+    print(
+        f'def test_{stag}(self):\n'
+        f'  html = MyPy8TML()\n'
+        f'  {stag} = html.{stag}.generate()\n'
+        f'  assert {stag} == {expected}\n'
+    )
+
 
 comando_desc = [
     ("expressao", "Renderiza uma expressão como texto"),
@@ -61,64 +76,19 @@ atributos = ['alt', 'method', 'type', 'title',
              'cellspacing', 'target', 'id', 'tabindex',
              'name', 'href']
 
-for item in atributos:
+'''for item in atributos:
     """    print(
         f'def in_{item}(self, value: str):\n' +
         "  self.in_content(f'" + item + '=' + '"{value}"' + "')\n" +
         f'  return self'
-    )"""
+    )"""'''
 
-print(df)
 
-for item in df.itertuples():
+'''for item in df.itertuples():
     print(
         f'def jnj_{item[3]}(self, expretion):\n'
         f'  self.content("{item[1]}")\n'
         f'  return self'
-    )
+    )'''
 
-
-def jnj_expretion(self, expretion):
-  self.content("{{ " + expretion + " }}")
-  return self
-
-def jnj_comand(self, comand):
-  self.content("{% " + comand + " %}")
-  return self
-
-def jnj_coment(self, coment):
-  self.content("{# " + coment + " #}")
-  return self
-
-def jnj_if(self, expretion):
-  self.content("{% if " + expretion + "%}")
-  return self
-
-def jnj_elif(self, expretion):
-  self.content("{% elif " + expretion + " %}")
-  return self
-
-def jnj_else(self):
-  self.content("{% else %}")
-  return self
-
-def jnj_endif(self):
-  self.content("{% endif %}")
-  return self
-
-def jnj_block(self, name:str):
-    self.content("{%" + name + "%}")
-    return self
-
-def jnj_endblock(self):
-    self.content("{% endblock %}")
-    return self
-
-def jnj_extends_temp(self, template: str):
-    self.content("{% extends " + template + " %}")
-    return self
-
-def jnj_include_temp(self, template: str):
-    self.content("{% include " + template + " %}")
-    return self
 
