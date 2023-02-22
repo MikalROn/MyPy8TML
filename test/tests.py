@@ -1,5 +1,5 @@
 from mypy_8tml import MyPy8TML
-
+from random import Random
 
 class Test:
 
@@ -7,6 +7,17 @@ class Test:
         html = MyPy8TML()
         html.p(-1).p(-1)
         assert html.generate() == '<p></p><p></p>'
+
+    def test_downline_inline_with_randown_num_arg(self):
+        num = round(Random().random() * 10)
+        html = MyPy8TML()
+        expected = ''
+        for n in range(num):
+            _ = html.p
+            expected += '<p></p>'
+
+        assert html(-num).generate() == expected
+
 
     def test_downline_no_agrs(self):
         html = MyPy8TML()
