@@ -12,12 +12,10 @@ form.div.in_class('flex-box')\
             .p['password :'](-1).input.in_type('password')()\
             .button.in_type('submit')['submit']()\
 
-html = form >> 'templates/index'
-
 
 @app.route('/')
 def cass_form():
-    return form.generete()
+    return form.generate()
 
 
 app.run(debug=True)
