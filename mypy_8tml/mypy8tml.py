@@ -22,7 +22,7 @@ class MyPy8TML:
 
     def __getitem__(self, item: str or tuple[str, str]):
         """
-        get item used in this case to add content inside or out of a tag
+        getitem used in this case to add content inside or out of a tag
         :param item:            Any string or a tuple (str, 'in' or 'out')
         :argument item[1]:      if == 'in' put the content inside a tag if == 'out' contents go out
         """
@@ -36,7 +36,7 @@ class MyPy8TML:
             else:
                 raise ValueError(f'kind {kind} doesent exist!')
         else:
-            return self.content(item)
+            return self.content(str(item))
 
     def __call__(self, times: int = 1, inline: str = '-'):
         if self._get_final_atribut():
@@ -52,7 +52,7 @@ class MyPy8TML:
     def __lshift__(self, other: str):
         self.import_html(other)
 
-    def generete(self) -> str:
+    def generate(self) -> str:
         """ This method generetes the html final code. """
         return self._html + '\n'.join(self._close[::-1])
 
@@ -67,7 +67,7 @@ class MyPy8TML:
         :type  other:           MyPy8TML
         :return:
         """
-        self + other.generete()
+        self + other.generate()
         return self
 
     def set_filename(self, name: str):
@@ -103,8 +103,6 @@ class MyPy8TML:
             self._html = self._html[:-1]
             self._html += f' {content} >'
             return self
-
-
 
     def downline(self, times: int = 1):
         """
@@ -250,7 +248,7 @@ class MyPy8TML:
 
     @property
     def data(self):
-        self._tag( "<data4scripts>", is_open=True )
+        self._tag( "<data>", is_open=True )
         return self
 
     @property
@@ -646,45 +644,45 @@ class MyPy8TML:
         return self
 
     def in_cellspacing(self, value: str):
-        self.in_content( f'cellspacing="{value}"' )
+        self.in_content( f'cellspacing="{value}"')
         return self
 
     def in_target(self, value: str):
-        self.in_content( f'target="{value}"' )
+        self.in_content(f'target="{value}"')
         return self
 
     def in_id(self, value: str):
-        self.in_content( f'id="{value}"' )
+        self.in_content(f'id="{value}"')
         return self
 
     def in_tabindex(self, value: str):
-        self.in_content( f'tabindex="{value}"' )
+        self.in_content(f'tabindex="{value}"')
         return self
 
     def in_name(self, value: str):
-        self.in_content( f'name="{value}"' )
+        self.in_content(f'name="{value}"')
         return self
 
     def in_href(self, value: str):
-        self.in_content( f'href="{value}"' )
+        self.in_content(f'href="{value}"')
         return self
 
     # Jinja in code
 
     def jnj_expretion(self, expretion):
-        self.content( "{{ " + expretion + " }}" )
+        self.content("{{ " + expretion + " }}")
         return self
 
     def jnj_comand(self, comand):
-        self.content( "{% " + comand + " %}" )
+        self.content("{% " + comand + " %}")
         return self
 
     def jnj_coment(self, coment):
-        self.content( "{# " + coment + " #}" )
+        self.content("{# " + coment + " #}")
         return self
 
     def jnj_if(self, expretion):
-        self.content( "{% if " + expretion + "%}" )
+        self.content("{% if " + expretion + "%}")
         return self
 
     def jnj_elif(self, expretion):
@@ -696,23 +694,23 @@ class MyPy8TML:
         return self
 
     def jnj_endif(self):
-        self.content( "{% endif %}" )
+        self.content("{% endif %}")
         return self
 
     def jnj_block(self, name: str):
-        self.content( "{%" + name + "%}" )
+        self.content("{%" + name + "%}")
         return self
 
     def jnj_endblock(self):
-        self.content( "{% endblock %}" )
+        self.content("{% endblock %}")
         return self
 
     def jnj_extends_temp(self, template: str):
-        self.content( "{% extends " + template + " %}" )
+        self.content("{% extends " + template + " %}")
         return self
 
     def jnj_include_temp(self, template: str):
-        self.content( "{% include " + template + " %}" )
+        self.content("{% include " + template + " %}")
         return self
 
     def init_html(self, title, lang: str, charset="UTF-8"):
@@ -753,9 +751,10 @@ class MyPy8TML:
             _ = self.style[css]()
         return self
 
+    # todo: this method was never tested
     def import_html(self, style_path, charset='UTF-8'):
         """
-        Import style from css code
+        Import html code from file code
         :param style_path:             Path to the css code
         :param charset:               encoding of css code
         :return:                       return self
@@ -767,7 +766,7 @@ class MyPy8TML:
 
     def to_html(self, name: str, path: str = '') -> None:
         with open(f'{path}{name}', 'w') as arq:
-            arq.write(self.generete())
+            arq.write(self.generate())
 
     dnl = downline
     sdnl = simple_down
