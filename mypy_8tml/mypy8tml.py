@@ -1,11 +1,11 @@
 class MyPy8TML:
     """ Generete html using comands on  python """
     def __init__(self, file_name: str = None, path: str = None):
-        self._html = ''
-        self._close = []
-        self._final_atribut = None
+        self._html: str = ''
+        self._close: list = []
+        self._final_atribut: str = None
         self._file_name: str = file_name
-        self._path = path
+        self._path: str = path
 
     def __add__(self, other: str):
         self._html += other
@@ -40,11 +40,17 @@ class MyPy8TML:
 
     def __call__(self, times: int = 1, inline: str = '-'):
         if self._get_final_atribut():
-            self.dnl(times)
+            self.downline(times)
             return self
         else:
-            self.sdnl(times)
+            self.simple_down(times)
             return self
+
+    def __rshift__(self, other: str):
+        self.to_html(other)
+
+    def __lshift__(self, other: str):
+        self.import_html(other)
 
     def generete(self) -> str:
         """ This method generetes the html final code. """
@@ -69,9 +75,13 @@ class MyPy8TML:
         return self
 
     def _verify_html(self) -> None:
-        """ Verifica se hmtl esta vazio """
+        """ Verify if the hmtl was empty """
         if len(self._html) <= 0:
             raise ValueError('There is no tags to put content inside.')
+
+    def _verify_if_are_close(self) -> None:
+        """ Verify if html was closed """
+        return self._html[-2:] == '/>'
 
     def _get_final_atribut(self):
         if len(self._close) > 0:
@@ -81,13 +91,20 @@ class MyPy8TML:
     def in_content(self, content: str):
         """
         Puts a content inside a tag
-        :param content:  any kind of content ex: class='just-a-class'
-        :return: self
+        :param content:     any kind of content ex: class='just-a-class'
+        :return:            self
         """
         self._verify_html()
-        self._html = self._html[:-1]
-        self._html += f' {content} >'
-        return self
+        if self._verify_if_are_close():
+            self._html = self._html[:-2]
+            self._html += f' {content} />'
+            return self
+        else:
+            self._html = self._html[:-1]
+            self._html += f' {content} >'
+            return self
+
+
 
     def downline(self, times: int = 1):
         """
@@ -97,11 +114,12 @@ class MyPy8TML:
         :return:                    self
         """
         self._verify_html()
-        if times < 0:
+        if times > 0:
             for time in range(times):
                 content = self._close.pop(-1)
                 self._html += f'{content}\n'
         else:
+            times = times * -1
             for time in range(times):
                 content = self._close.pop(-1)
                 self._html += f'{content}'
@@ -114,7 +132,7 @@ class MyPy8TML:
                                 if negative close tag inline
         :return: self
         """
-        if times < 0:
+        if times > 0:
             for time in range(times):
                 self._html += f'\n'
         else:
@@ -147,17 +165,17 @@ class MyPy8TML:
 
     @property
     def div(self):
-        self._tag( "<div>", is_open=True )
+        self._tag("<div>", is_open=True)
         return self
 
     @property
     def h1(self):
-        self._tag( "<h1>", is_open=True )
+        self._tag("<h1>", is_open=True)
         return self
 
     @property
     def h2(self):
-        self._tag( "<h2>", is_open=True )
+        self._tag("<h2>", is_open=True)
         return self
 
     @property
@@ -517,7 +535,12 @@ class MyPy8TML:
 
     @property
     def template(self):
-        self._tag( "<template>", is_open=True )
+        self._tag("<template>", is_open=True)
+        return self
+
+    @property
+    def br(self):
+        self._tag("<br>", is_open=False)
         return self
 
     @property
@@ -697,10 +720,10 @@ class MyPy8TML:
         Generates the stat of a html code until the bod
 
         <!DOCTYPE html>
-        <html lang="en">
+        <html lang=":param lang:"}>
         <head>
-            <meta charset="UTF-8">
-            <title>Title</title>
+            <meta charset=":param charset:">
+            <title>:param title:</title>
         </head>
         <body> {UNTIL HERE}
 
@@ -730,8 +753,20 @@ class MyPy8TML:
             _ = self.style[css]()
         return self
 
-    def to_html(self, name: str, path: str='') -> None:
-        with open(f'{path}{name}.html', 'w') as arq:
+    def import_html(self, style_path, charset='UTF-8'):
+        """
+        Import style from css code
+        :param style_path:             Path to the css code
+        :param charset:               encoding of css code
+        :return:                       return self
+        """
+        with open(style_path, 'rt', encoding=charset) as file:
+            html: str = file.read()
+            _ = self.content(html)
+        return self
+
+    def to_html(self, name: str, path: str = '') -> None:
+        with open(f'{path}{name}', 'w') as arq:
             arq.write(self.generete())
 
     dnl = downline
