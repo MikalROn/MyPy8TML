@@ -1,8 +1,45 @@
 class MyPy8TML:
-    def __init__(self):
+    def __init__(self, file_name: str= None):
         self._html = ''
         self._close = []
         self._final_atribut = None
+        self._file_name: str = file_name
+
+    def __add__(self, other: str):
+        self._html += other
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.to_html(self._file_name)
+
+    def __enter__(self):
+        return self
+
+    def __getitem__(self, item: str or tuple[str, str]):
+        """
+        get item used in this case to add content inside or out of a tag
+        :param item:            Any string or a tuple (str, 'in' or 'out')
+        :argument item[1]:      if == 'in' put the content inside a tag if == 'out' contents go out
+        """
+        self._verify_html()
+        if type(item) == tuple:
+            content, kind = item
+            if kind == 'in':
+                return self.in_content(content)
+            elif kind == 'out':
+                return self.content(content)
+            else:
+                raise ValueError(f'kind {kind} doesent exist!')
+        else:
+            return self.content(item)
+
+    def __call__(self, times: int = 1):
+        if self._get_final_atribut():
+            self.dnl(times)
+            return self
+        else:
+            self.sdnl(times)
+            return self
 
     def generete(self) -> str:
         """ This method generetes the html final code. """
@@ -22,15 +59,9 @@ class MyPy8TML:
         self + other.generete()
         return self
 
-    def __add__(self, other: str):
-        self._html += other
+    def set_filename(self, name: str):
+        self._file_name: str = name
         return self
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        self.to_html(__name__, path='templats')
 
     def _verify_html(self) -> None:
         if len(self._html) <= 0:
@@ -51,24 +82,6 @@ class MyPy8TML:
         self._html = self._html[:-1]
         self._html += f' {content} >'
         return self
-
-    def __getitem__(self, item: str or tuple[str, str]):
-        """
-        get item used in this case to add content inside or out of a tag
-        :param item:            Any string or a tuple (str, 'in' or 'out')
-        :argument item[1]:      if == 'in' put the content inside a tag if == 'out' contents go out
-        """
-        self._verify_html()
-        if type(item) == tuple:
-            content, kind = item
-            if kind == 'in':
-                return self.in_content(content)
-            elif kind == 'out':
-                return self.content(content)
-            else:
-                raise ValueError(f'kind {kind} doesent exist!')
-        else:
-            return self.content(item)
 
     def downline(self, times: int = 1):
         """
@@ -106,14 +119,6 @@ class MyPy8TML:
         self._final_atribut = tag
         if is_open:
             self._close.append( f'</{clean_tag}>' )
-
-    def __call__(self, times: int = 1):
-        if self._get_final_atribut():
-            self.dnl( times )
-            return self
-        else:
-            self.sdnl( times )
-            return self
 
     # Tags HTML
 
@@ -685,9 +690,8 @@ class MyPy8TML:
             _ = self.style[css]()
 
     def to_html(self, name, path='') -> None:
-        with open(f'{path}/{name}', 'w') as arq:
+        with open(f'{path}/{name}.html', 'wb') as arq:
             arq.write(self.generete())
-
 
     dnl = downline
     sdnl = simple_down
