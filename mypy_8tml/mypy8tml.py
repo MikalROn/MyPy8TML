@@ -35,8 +35,12 @@ class MyPy8TML:
                 return self.content(content)
             else:
                 raise ValueError(f'kind {kind} doesent exist!')
-        else:
+        elif type(item) == str:
             return self.content(str(item))
+        elif item._is_self():
+            return self[item.generate()]
+        else:
+            raise TypeError(f'This method dont suports {type(item)}')
 
     def __call__(self, times: int = 1, inline: str = '-'):
         if self._get_final_atribut():
@@ -51,6 +55,10 @@ class MyPy8TML:
 
     def __lshift__(self, other: str):
         self.import_html(other)
+
+    @staticmethod
+    def _is_self():
+        return True
 
     def generate(self) -> str:
         """ This method generetes the html final code. """
@@ -209,6 +217,11 @@ class MyPy8TML:
     @property
     def strong(self):
         self._tag( "<strong>", is_open=True )
+        return self
+
+    @property
+    def nav(self):
+        self._tag("<nav>", is_open=True)
         return self
 
     @property
@@ -561,6 +574,18 @@ class MyPy8TML:
         self._tag( "<body>", is_open=True )
         return self
 
+    @property
+    def footer(self):
+        self._tag( "<footer>", is_open=True )
+        return self
+
+    @property
+    def span(self):
+        self._tag( "<span>", is_open=True)
+        return self
+
+
+
     # Atributos html
 
     def in_alt(self, value: str):
@@ -579,8 +604,12 @@ class MyPy8TML:
         self.in_content( f'title="{value}"' )
         return self
 
+    def in_for(self, value: str):
+        self.in_content(f'for="{value}"')
+        return self
+
     def in_bgcolor(self, value: str):
-        self.in_content( f'bgcolor="{value}"' )
+        self.in_content(f'bgcolor="{value}"')
         return self
 
     def in_src(self, value: str):
@@ -592,23 +621,23 @@ class MyPy8TML:
         return self
 
     def in_colspan(self, value: str):
-        self.in_content( f'colspan="{value}"' )
+        self.in_content(f'colspan="{value}"')
         return self
 
     def in_cols(self, value: str):
-        self.in_content( f'cols="{value}"' )
+        self.in_content(f'cols="{value}"')
         return self
 
     def in_rows(self, value: str):
-        self.in_content( f'rows="{value}"' )
+        self.in_content(f'rows="{value}"')
         return self
 
     def in_accesskey(self, value: str):
-        self.in_content( f'accesskey="{value}"' )
+        self.in_content(f'accesskey="{value}"')
         return self
 
     def in_border(self, value: str):
-        self.in_content( f'border="{value}"' )
+        self.in_content(f'border="{value}"')
         return self
 
     def in_class(self, value: str):
@@ -713,13 +742,14 @@ class MyPy8TML:
         self.content("{% include " + template + " %}")
         return self
 
-    def init_html(self, title, lang: str, charset="UTF-8"):
+    def init_html(self, title, lang: str, charset="UTF-8", inhead: str = ''):
         """
         Generates the stat of a html code until the bod
 
         <!DOCTYPE html>
         <html lang=":param lang:"}>
         <head>
+            :param inhead:
             <meta charset=":param charset:">
             <title>:param title:</title>
         </head>
@@ -728,12 +758,13 @@ class MyPy8TML:
         :param title:               title of your html page
         :param lang:                 lang of html
         :param charset:              charset of html
+        :param inhead:               puts content un head
         :return:                     self
         """
         _ = self \
             .doctype() \
             .html[f'lang="{lang}"', 'in']()\
-            .head\
+            .head[inhead]\
             .meta[f'charset="{charset}"', 'in']()\
             .title[title](2)\
             .body
