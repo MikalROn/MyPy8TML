@@ -3,19 +3,33 @@ from mypy_8tml import MyPy8TML
 
 app = Flask(__name__)
 
+menu = MyPy8TML()
+
+menu.nav.in_class('menu')\
+        .ul\
+            .li\
+                .a.in_href('/contact').button['Contato'](3)\
+            .li\
+                .a.in_href('/about').button['Sobre'](3)
+
+
+
 # Página inicial
 index = MyPy8TML().init_html('Página Inicial', 'pt')
 
 index.div.in_class('container py-5')\
         .h1['Meu Site de Demonstração']()\
-        .p['Bem-vindo ao meu site de demonstração! Aqui você encontrará algumas páginas simples que mostram o uso do Flask e do MyPy8TML para criar páginas da web.']()
+        .p['Bem-vindo ao meu site de demonstração! Aqui você encontrará algumas páginas simples que mostram o uso do Flask e do MyPy8TML para criar páginas da web.']()\
+        [menu]()
 
 # Sobre
 about = MyPy8TML().init_html('Sobre', 'pt')
 
 about.div.in_class('container py-5')\
         .h1['Sobre']()\
-        .p['Meu nome é ChatGPT e eu criei este site de demonstração para mostrar como criar páginas da web com o Flask e o MyPy8TML.']()
+        .p['Meu nome é ChatGPT e eu criei este site de ' \
+           'demonstração para mostrar como criar páginas ' \
+           'da web com o Flask e o MyPy8TML.']()
 
 # Contato
 contact = MyPy8TML().init_html('Contato', 'pt')
