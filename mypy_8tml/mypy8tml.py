@@ -37,9 +37,10 @@ class MyPy8TML:
                 raise ValueError(f'kind {kind} doesent exist!')
         elif type(item) == str:
             return self.content(str(item))
-        elif item._is_self():
+        try:
+            item._is_self()
             return self[item.generate()]
-        else:
+        except:
             raise TypeError(f'This method dont suports {type(item)}')
 
     def __call__(self, times: int = 1, inline: str = '-'):
@@ -561,6 +562,11 @@ class MyPy8TML:
         return self
 
     @property
+    def pre(self):
+        self._tag( "<pre>", is_open=True )
+        return self
+
+    @property
     def doctype(self):
         self._tag( "<!DOCTYPE html>", is_open=False )
         return self
@@ -698,7 +704,7 @@ class MyPy8TML:
     # Jinja in code
 
     def jnj(self, expretion):
-        self.content("{ " + expretion + " }\n")
+        self.content("{" + expretion + "}\n")
         return self
 
     def jnj_add_bootstrap(self):
@@ -746,7 +752,7 @@ class MyPy8TML:
         return self
 
     def jnj_extends_temp(self, template: str):
-        self.content("{% extends " + template + " %}\n")
+        self.content("{% extends " + template + "%}\n")
         return self
 
     def jnj_include_temp(self, template: str):
