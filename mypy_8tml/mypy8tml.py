@@ -8,16 +8,19 @@ class MyPy8TML:
         self._path: str = path
 
     def __add__(self, other: str):
+        """ Add a string into a html """
         self._html += other
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
+        """ Creates a html file with code when's with ends """
         if self._path:
             self.to_html(self._file_name, path=self._path)
         else:
             self.to_html(self._file_name, path='')
 
     def __enter__(self):
+        """ Starts with returning self """
         return self
 
     def __getitem__(self, item: str or tuple[str, str]):
@@ -59,6 +62,7 @@ class MyPy8TML:
 
     @staticmethod
     def _is_self():
+        """ Method to checks if class is MyPy8TML """
         return True
 
     def generate(self) -> str:
@@ -81,6 +85,7 @@ class MyPy8TML:
         return self
 
     def set_filename(self, name: str):
+        """ Set the name of output file """
         self._file_name: str = name
         return self
 
@@ -94,6 +99,7 @@ class MyPy8TML:
         return self._html[-2:] == '/>'
 
     def _get_final_atribut(self):
+        """ Get final attribute from html code """
         if len(self._close) > 0:
             return self._final_atribut == self._close[-1].replace('/', '')
         return False
@@ -188,27 +194,27 @@ class MyPy8TML:
 
     @property
     def h3(self):
-        self._tag( "<h3>", is_open=True )
+        self._tag("<h3>", is_open=True)
         return self
 
     @property
     def h4(self):
-        self._tag( "<h4>", is_open=True )
+        self._tag("<h4>", is_open=True)
         return self
 
     @property
     def h5(self):
-        self._tag( "<h5>", is_open=True )
+        self._tag("<h5>", is_open=True)
         return self
 
     @property
     def h6(self):
-        self._tag( "<h6>", is_open=True )
+        self._tag("<h6>", is_open=True)
         return self
 
     @property
     def p(self):
-        self._tag( "<p>", is_open=True )
+        self._tag("<p>", is_open=True)
         return self
 
     @property
@@ -228,7 +234,7 @@ class MyPy8TML:
 
     @property
     def em(self):
-        self._tag( "<em>", is_open=True )
+        self._tag("<em>", is_open=True)
         return self
 
     @property
@@ -303,7 +309,12 @@ class MyPy8TML:
 
     @property
     def i(self):
-        self._tag( "<i>", is_open=True )
+        self._tag("<i>", is_open=True)
+        return self
+
+    @property
+    def section(self):
+        self._tag("<section>", is_open=True)
         return self
 
     @property
