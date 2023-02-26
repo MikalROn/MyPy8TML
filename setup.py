@@ -3,7 +3,7 @@ from setuptools import setup
 from setuptools import setup
 
 with open('README.md', 'rt') as arq:
-      readme = arq.read()
+    readme = arq.read()
 
 
 keywords = ['html', 'pyhtml', 'myhtml', 'mypyhmtl', '8tml', 'mypyhtml', 'mypy8tml', '']
