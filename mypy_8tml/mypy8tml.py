@@ -99,7 +99,7 @@ class MyPy8TML:
 
     def in_content(self, content: str):
         """
-        Puts a content inside a tag
+        Puts content inside a tag
         :param content:     any kind of content ex: class='just-a-class'
         :return:            self
         """
@@ -585,9 +585,7 @@ class MyPy8TML:
         self._tag( "<span>", is_open=True)
         return self
 
-
-
-    # Atributos html
+    #  html
 
     def in_alt(self, value: str):
         self.in_content( f'alt="{value}"' )
@@ -642,39 +640,39 @@ class MyPy8TML:
         return self
 
     def in_class(self, value: str):
-        self.in_content( f'class="{value}"' )
+        self.in_content(f'class="{value}"')
         return self
 
     def in_action(self, value: str):
-        self.in_content( f'action="{value}"' )
+        self.in_content(f'action="{value}"')
         return self
 
     def in_rowspan(self, value: str):
-        self.in_content( f'rowspan="{value}"' )
+        self.in_content(f'rowspan="{value}"')
         return self
 
     def in_value(self, value: str):
-        self.in_content( f'value="{value}"' )
+        self.in_content(f'value="{value}"')
         return self
 
     def in_lang(self, value: str):
-        self.in_content( f'lang="{value}"' )
+        self.in_content(f'lang="{value}"')
         return self
 
     def in_style(self, value: str):
-        self.in_content( f'style="{value}"' )
+        self.in_content(f'style="{value}"')
         return self
 
     def in_cellpadding(self, value: str):
-        self.in_content( f'cellpadding="{value}"' )
+        self.in_content(f'cellpadding="{value}"')
         return self
 
     def in_height(self, value: str):
-        self.in_content( f'height="{value}"' )
+        self.in_content(f'height="{value}"')
         return self
 
     def in_cellspacing(self, value: str):
-        self.in_content( f'cellspacing="{value}"')
+        self.in_content(f'cellspacing="{value}"')
         return self
 
     def in_target(self, value: str):
