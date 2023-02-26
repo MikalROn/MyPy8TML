@@ -2,8 +2,9 @@ import pandas as pd
 
 df = pd.read_csv('data4scripts/jinja.csv', sep=';')
 fd = pd.read_csv('data4scripts/elementos_html.csv')
+#tp = pd.read_csv('data4scripts/tag_attrs.csv')
 
-for tag in fd.itertuples():
+'''for tag in fd.itertuples():
     stag = tag[2].replace('<', '').replace('>', '')
     if tag[3] != 'Sim':
         expected = f'"<{stag}></{stag}>"'
@@ -14,7 +15,7 @@ for tag in fd.itertuples():
         f'  html = MyPy8TML()\n'
         f'  {stag} = html.{stag}.generate()\n'
         f'  assert {stag} == {expected}\n'
-    )
+    )'''
 
 
 comando_desc = [
@@ -59,6 +60,7 @@ css = ['class,id,style,accesskey,tabindex,title,lang',
        'class,id,style,accesskey,tabindex,title,border,cellpadding,cellspacing',
        'class,id,style,accesskey,tabindex,title,colspan,rowspan,action,method,type,name,value',
        'class,id,style,accesskey,tabindex,title,name,rows,cols']
+
 data = [
     string.split(',')
     for string in css
@@ -76,19 +78,16 @@ atributos = ['alt', 'method', 'type', 'title',
              'cellspacing', 'target', 'id', 'tabindex',
              'name', 'href']
 
-'''for item in atributos:
-    """    print(
-        f'def in_{item}(self, value: str):\n' +
-        "  self.in_content(f'" + item + '=' + '"{value}"' + "')\n" +
-        f'  return self'
-    )"""'''
+for item in atributos:
+  print(
+        f'def test_in_{item}(self):\n'
+        f'  html = MyPy8TML()\n'
+        f"  html.p.in_{item}('test')\n"
+        f'  assert html.generate() == ' + f"'<p {item}=" + '"test"' + " ></p>'"
+    )
 
 
-'''for item in df.itertuples():
-    print(
-        f'def jnj_{item[3]}(self, expretion):\n'
-        f'  self.content("{item[1]}")\n'
-        f'  return self'
-    )'''
+
+
 
 
