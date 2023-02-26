@@ -86,7 +86,7 @@ class MyPy8TML:
     def _verify_html(self) -> None:
         """ Verify if the hmtl was empty """
         if len(self._html) == 0:
-            raise ValueError('There is no tags to put content inside.')
+            raise ValueError('Your html was empty.')
 
     def _verify_if_are_close(self) -> None:
         """ Verify if html was closed """
@@ -157,17 +157,17 @@ class MyPy8TML:
         :type is_open:      bool
         :return: self
         """
-        clean_tag = tag.replace( '<', '' ).replace( '>', '' )
+        clean_tag = tag.replace('<', '').replace('>', '')
         self._html += tag
         self._final_atribut = tag
         if is_open:
-            self._close.append( f'</{clean_tag}>' )
+            self._close.append(f'</{clean_tag}>')
 
     # Tags HTML
 
     @property
     def header(self):
-        self._tag( "<header>", is_open=True )
+        self._tag("<header>", is_open=True)
         return self
 
     @property
