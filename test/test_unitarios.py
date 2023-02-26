@@ -3,6 +3,12 @@ from random import Random
 
 
 class Test:
+
+    def test_in(self):
+        html = MyPy8TML()
+        html.p['class="test"', 'in']()
+        assert html.generate() == '<p class="test" ></p>\n'
+
     def test_downline_inline_close(self):
         html = MyPy8TML()
         html.p(-1).p(-1)
@@ -72,6 +78,7 @@ class Test:
                    f'</body>'
 
         assert html.generate() == expected
+
 
     def test_if_MyPy8TML_can_recive_other_MyPy8TML(self):
         html1 = MyPy8TML()
@@ -454,7 +461,134 @@ class Test:
         html = MyPy8TML()
         body = html.body.generate()
         assert body == "<body></body>"
+    def test_in_class(self):
+        html = MyPy8TML()
+        html.p.in_class('test')()
+        assert html.generate() == '<p class="test" ></p>\n'
 
+    def test_in_alt(self):
+        html = MyPy8TML()
+        html.p.in_alt( 'test' )
+        assert html.generate() == '<p alt="test" ></p>'
 
+    def test_in_method(self):
+        html = MyPy8TML()
+        html.p.in_method( 'test' )
+        assert html.generate() == '<p method="test" ></p>'
+
+    def test_in_type(self):
+        html = MyPy8TML()
+        html.p.in_type( 'test' )
+        assert html.generate() == '<p type="test" ></p>'
+
+    def test_in_title(self):
+        html = MyPy8TML()
+        html.p.in_title( 'test' )
+        assert html.generate() == '<p title="test" ></p>'
+
+    def test_in_bgcolor(self):
+        html = MyPy8TML()
+        html.p.in_bgcolor( 'test' )
+        assert html.generate() == '<p bgcolor="test" ></p>'
+
+    def test_in_src(self):
+        html = MyPy8TML()
+        html.p.in_src( 'test' )
+        assert html.generate() == '<p src="test" ></p>'
+
+    def test_in_width(self):
+        html = MyPy8TML()
+        html.p.in_width( 'test' )
+        assert html.generate() == '<p width="test" ></p>'
+
+    def test_in_colspan(self):
+        html = MyPy8TML()
+        html.p.in_colspan( 'test' )
+        assert html.generate() == '<p colspan="test" ></p>'
+
+    def test_in_cols(self):
+        html = MyPy8TML()
+        html.p.in_cols( 'test' )
+        assert html.generate() == '<p cols="test" ></p>'
+
+    def test_in_rows(self):
+        html = MyPy8TML()
+        html.p.in_rows( 'test' )
+        assert html.generate() == '<p rows="test" ></p>'
+
+    def test_in_accesskey(self):
+        html = MyPy8TML()
+        html.p.in_accesskey( 'test' )
+        assert html.generate() == '<p accesskey="test" ></p>'
+
+    def test_in_border(self):
+        html = MyPy8TML()
+        html.p.in_border( 'test' )
+        assert html.generate() == '<p border="test" ></p>'
+
+    def test_in_action(self):
+        html = MyPy8TML()
+        html.p.in_action( 'test' )
+        assert html.generate() == '<p action="test" ></p>'
+
+    def test_in_rowspan(self):
+        html = MyPy8TML()
+        html.p.in_rowspan( 'test' )
+        assert html.generate() == '<p rowspan="test" ></p>'
+
+    def test_in_value(self):
+        html = MyPy8TML()
+        html.p.in_value( 'test' )
+        assert html.generate() == '<p value="test" ></p>'
+
+    def test_in_lang(self):
+        html = MyPy8TML()
+        html.p.in_lang( 'test' )
+        assert html.generate() == '<p lang="test" ></p>'
+
+    def test_in_style(self):
+        html = MyPy8TML()
+        html.p.in_style( 'test' )
+        assert html.generate() == '<p style="test" ></p>'
+
+    def test_in_cellpadding(self):
+        html = MyPy8TML()
+        html.p.in_cellpadding( 'test' )
+        assert html.generate() == '<p cellpadding="test" ></p>'
+
+    def test_in_height(self):
+        html = MyPy8TML()
+        html.p.in_height( 'test' )
+        assert html.generate() == '<p height="test" ></p>'
+
+    def test_in_cellspacing(self):
+        html = MyPy8TML()
+        html.p.in_cellspacing( 'test' )
+        assert html.generate() == '<p cellspacing="test" ></p>'
+
+    def test_in_target(self):
+        html = MyPy8TML()
+        html.p.in_target( 'test' )
+        assert html.generate() == '<p target="test" ></p>'
+
+    def test_in_id(self):
+        html = MyPy8TML()
+        html.p.in_id( 'test' )
+        assert html.generate() == '<p id="test" ></p>'
+
+    def test_in_tabindex(self):
+        html = MyPy8TML()
+        html.p.in_tabindex( 'test' )
+        assert html.generate() == '<p tabindex="test" ></p>'
+
+    def test_in_name(self):
+        html = MyPy8TML()
+        html.p.in_name( 'test' )
+        assert html.generate() == '<p name="test" ></p>'
+
+    def test_in_href(self):
+        html = MyPy8TML()
+        html.p.in_href( 'test' )
+        assert html.generate() == '<p href="test" ></p>'
 
 
