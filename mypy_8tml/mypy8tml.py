@@ -414,7 +414,7 @@ class MyPy8TML:
 
     @property
     def li(self):
-        self._tag( "<td>", is_open=True )
+        self._tag( "<li>", is_open=True )
         return self
 
     @property
@@ -724,7 +724,7 @@ class MyPy8TML:
         return self
 
     def jnj_if(self, expretion):
-        self.content("{% if " + expretion + "%}\n")
+        self.content("{% if " + expretion + " %}\n")
         return self
 
     def jnj_elif(self, expretion):
@@ -732,7 +732,7 @@ class MyPy8TML:
         return self
 
     def jnj_else(self):
-        self.content( "{% else %}\n" )
+        self.content("{% else %}\n")
         return self
 
     def jnj_endif(self):
@@ -748,7 +748,7 @@ class MyPy8TML:
         return self
 
     def jnj_extends_temp(self, template: str):
-        self.content("{% extends " + template + "%}\n")
+        self.content("{% extends " + template + " %}\n")
         return self
 
     def jnj_include_temp(self, template: str):

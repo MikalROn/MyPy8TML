@@ -4,10 +4,19 @@ from random import Random
 
 class Test:
 
+    def test_put_another_(self):
+        html = MyPy8TML()
+        html.p['class="test"', 'in']()
+        assert html.generate() == '<p class="test" ></p>\n'
     def test_content_in(self):
         html = MyPy8TML()
         html.p['class="test"', 'in']()
         assert html.generate() == '<p class="test" ></p>\n'
+
+    def test__add__method(self):
+        html = MyPy8TML()
+        html = html.p + 'test'
+        assert html.generate() == '<p>test</p>'
 
     def test_content_out(self):
         html = MyPy8TML()
@@ -87,9 +96,20 @@ class Test:
     def test_if_MyPy8TML_can_recive_other_MyPy8TML(self):
         html1 = MyPy8TML()
         html2 = MyPy8TML()
-        p = html1.p['test'].generate()
+        p = html1.p['test']
         p2 = html2.p[p].generate()
         assert p2 == '<p><p>test</p></p>'
+
+    def test_set_file_name(self):
+        html = MyPy8TML()
+        html.set_filename('test')
+        assert html._file_name == 'test'
+
+    def test_closed_tags_in_content(self):
+        html = MyPy8TML()
+        html.p(-1)['<img/>'].in_src('test')
+        print()
+        assert html.generate() == '<p></p><img src="test" />'
 
     def test_p(self):
         html = MyPy8TML()
@@ -151,6 +171,51 @@ class Test:
         s = html.s.generate()
         assert s == "<s></s>"
 
+    def test_div(self):
+        html = MyPy8TML()
+        s = html.div.generate()
+        assert s == "<div></div>"
+
+    def test_head(self):
+        html = MyPy8TML()
+        s = html.head.generate()
+        assert s == "<head></head>"
+
+    def test_section(self):
+        html = MyPy8TML()
+        s = html.section.generate()
+        assert s == "<section></section>"
+
+    def test_ul(self):
+        html = MyPy8TML()
+        s = html.ul.generate()
+        assert s == "<ul></ul>"
+
+    def test_li(self):
+        html = MyPy8TML()
+        s = html.li.generate()
+        assert s == "<li></li>"
+
+    def test_br(self):
+        html = MyPy8TML()
+        s = html.br.generate()
+        assert s == "<br>"
+
+    def test_pre(self):
+        html = MyPy8TML()
+        s = html.pre.generate()
+        assert s == "<pre></pre>"
+
+    def test_footer(self):
+        html = MyPy8TML()
+        s = html.footer.generate()
+        assert s == "<footer></footer>"
+
+    def test_span(self):
+        html = MyPy8TML()
+        s = html.span.generate()
+        assert s == "<span></span>"
+
     def test_q(self):
         html = MyPy8TML()
         q = html.q.generate()
@@ -165,11 +230,6 @@ class Test:
         html = MyPy8TML()
         dfn = html.dfn.generate()
         assert dfn == "<dfn></dfn>"
-
-    def nav(self):
-        html = MyPy8TML()
-        nav = html.nav.generate()
-        assert nav == "<nav></nav>"
 
     def test_abbr(self):
         html = MyPy8TML()
@@ -416,10 +476,15 @@ class Test:
         meter = html.meter.generate()
         assert meter == "<meter></meter>"
 
-    def test_head(self):
+    def test_header(self):
         html = MyPy8TML()
-        head = html.head.generate()
-        assert head == "<head></head>"
+        head = html.header.generate()
+        assert head == "<header></header>"
+
+    def test_nav(self):
+        html = MyPy8TML()
+        head = html.nav.generate()
+        assert head == "<nav></nav>"
 
     def test_title(self):
         html = MyPy8TML()
@@ -594,5 +659,20 @@ class Test:
         html = MyPy8TML()
         html.p.in_href( 'test' )
         assert html.generate() == '<p href="test" ></p>'
+
+    def test_in_for(self):
+        html = MyPy8TML()
+        html.p.in_for('test')
+        assert html.generate() == '<p for="test" ></p>'
+
+    def test_import_html(self):
+        html = MyPy8TML()
+        html.import_html('test/test_files/test.html')
+        assert html.generate() == '<p>test</p>'
+
+    def test_import_css(self):
+        html = MyPy8TML()
+        html.import_style('test/test_files/test.css')
+        assert html.generate() == '<style>test{}</style>\n'
 
 
