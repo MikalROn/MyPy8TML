@@ -7,14 +7,6 @@ with open('README.md', 'rt') as arq:
 
 
 keywords = ['html', 'pyhtml', 'myhtml', 'mypyhmtl', '8tml', 'mypyhtml', 'mypy8tml', '']
-classifiers = [
-          'Development Status :: 1 - Beta',
-          'Intended Audience :: Developers',
-          'Operating System :: MacOS :: MacOS X',
-          'Operating System :: Microsoft :: Windows',
-          'Programming Language :: Python',
-          'Topic :: Communications :: Email'
-]
 
 setup(name='mypy8tml',
       url='https://github.com/MikalROn/MyPy8TML',
@@ -27,7 +19,6 @@ setup(name='mypy8tml',
       keywords=keywords,
       description='A new way to generates html code using class methods in python',
       packages=['mypy_8tml'],
-      classifiers=classifiers,
       python_requires='>=3',
       maintainer='Daniel Coêlho',
       maintainer_email='heromon.9010@gmail.com',
