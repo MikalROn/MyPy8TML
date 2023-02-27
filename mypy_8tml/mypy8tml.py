@@ -23,7 +23,7 @@ class MyPy8TML:
         """ Starts with returning self """
         return self
 
-    def __getitem__(self, item: str or tuple[str, str]):
+    def __getitem__(self, item: str or tuple[str, str] or object):
         """
         getitem used in this case to add content inside or out of a tag
         :param item:            Any string or a tuple (str, 'in' or 'out')
@@ -43,7 +43,7 @@ class MyPy8TML:
         try:
             item._is_self()
             return self[item.generate()]
-        except:
+        except Exception:
             raise TypeError(f'This method dont suports {type(item)}')
 
     def __call__(self, times: int = 1, inline: str = '-'):
@@ -53,12 +53,6 @@ class MyPy8TML:
         else:
             self.simple_down(times)
             return self
-
-    def __rshift__(self, other: str):
-        self.to_html(other)
-
-    def __lshift__(self, other: str):
-        self.import_html(other)
 
     @staticmethod
     def _is_self():
@@ -73,15 +67,6 @@ class MyPy8TML:
     def content(self, content: str):
         """ Add content to main html code """
         self._html += content
-        return self
-
-    def append(self, other):
-        """
-        :param other:           Another MyPy8TML object
-        :type  other:           MyPy8TML
-        :return:
-        """
-        self + other.generate()
         return self
 
     def set_filename(self, name: str):
@@ -602,7 +587,7 @@ class MyPy8TML:
         self._tag( "<span>", is_open=True)
         return self
 
-    #  html
+    #  html inside tags
 
     def in_alt(self, value: str):
         self.in_content( f'alt="{value}"' )
@@ -811,7 +796,7 @@ class MyPy8TML:
         return self
 
     # todo: this method was never tested
-    def import_html(self, style_path, charset='UTF-8'):
+    def import_html(self, style_path, charset='UTF-8') -> None:
         """
         Import html code from file code
         :param style_path:             Path to the css code
@@ -824,6 +809,11 @@ class MyPy8TML:
         return self
 
     def to_html(self, name: str, path: str = '') -> None:
+        """ Export to Html
+        :param name:        name of html code with sufix
+        :param path:        path to put code with slash bar
+        :return: None
+        """
         with open(f'{path}{name}', 'w') as arq:
             arq.write(self.generate())
 
