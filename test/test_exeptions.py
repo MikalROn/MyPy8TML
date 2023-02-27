@@ -13,3 +13,8 @@ class Test:
         with pytest.raises(TypeError):
             html = MyPy8TML()
             assert html.p['test':'test']
+
+    def test_empty_error(self):
+        with pytest.raises(ValueError):
+            html = MyPy8TML()
+            assert html['test', 'in']
