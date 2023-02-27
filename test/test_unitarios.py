@@ -4,18 +4,23 @@ from random import Random
 
 class Test:
 
-    def test_in(self):
+    def test_content_in(self):
         html = MyPy8TML()
         html.p['class="test"', 'in']()
         assert html.generate() == '<p class="test" ></p>\n'
+
+    def test_content_out(self):
+        html = MyPy8TML()
+        html.p['test', 'out']()
+        assert html.generate() == '<p>test</p>\n'
 
     def test_downline_inline_close(self):
         html = MyPy8TML()
         html.p(-1).p(-1)
         assert html.generate() == '<p></p><p></p>'
 
-    def test_downline_inline_with_randown_num_arg(self):
-        num = round(Random().random() * 10)
+    def test_downline_inline_with_randown_num_arg_greather_than_1(self):
+        num = round(Random().random() * 10) + 1
         html = MyPy8TML()
         expected = ''
         for n in range(num):
@@ -78,7 +83,6 @@ class Test:
                    f'</body>'
 
         assert html.generate() == expected
-
 
     def test_if_MyPy8TML_can_recive_other_MyPy8TML(self):
         html1 = MyPy8TML()
