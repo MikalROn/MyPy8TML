@@ -1,0 +1,8 @@
+site_name: MyPy8tml
+site_author: Daniel Coêlho
+repo_url: https://github.com/MikalROn/MyPy8TML
+
+theme:
+    name: windmill-dark
+    locale: en
+    nav_style: dark
