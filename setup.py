@@ -1,7 +1,5 @@
 from setuptools import setup
 
-from setuptools import setup
-
 with open('README.md', 'rt') as arq:
     readme = arq.read()
 
@@ -10,7 +8,7 @@ keywords = ['html', 'pyhtml', 'myhtml', 'mypyhmtl', '8tml', 'mypyhtml', 'mypy8tm
 
 setup(name='mypy8tml',
       url='https://github.com/MikalROn/MyPy8TML',
-      version='0.1.1',
+      version='0.2.1',
       license='MIT license',
       author='Daniel Coêlho',
       long_description=readme,
@@ -24,6 +22,7 @@ setup(name='mypy8tml',
       maintainer_email='heromon.9010@gmail.com',
       project_urls={
             'Source': 'https://github.com/MikalROn/MyPy8TML',
-            'Demos': 'https://github.com/MikalROn/MyPy8TML/tree/main/demos/demo_site'
+            'Demos': 'https://github.com/MikalROn/MyPy8TML/tree/main/demos/demo_site',
+            'Docs': 'https://mikalron.github.io/MyPy8TML/'
       }
 )
