@@ -5,7 +5,7 @@
 > Status of project: in progress...
 
 <div align="center">
-<a href="https://github.com/MikalROn/ApiOmie-nao-oficial" ><img alt="GitHub" src="https://img.shields.io/badge/Github-Open%20source-green?style=for-the-badge&amp;logo=github"></a>
+<a href="https://github.com/MikalROn/MyPy8TML" ><img alt="GitHub" src="https://img.shields.io/badge/Github-Open%20source-green?style=for-the-badge&amp;logo=github"></a>
 <img src="https://img.shields.io/github/license/MikalROn/MyPy8TML?style=for-the-badge">
 <a href="https://smokeshow.helpmanual.io/0c5m6z050r2w2d4t1n4n/"><img src="https://img.shields.io/badge/coverage-100%25-green?style=for-the-badge"></a>
 </div>
