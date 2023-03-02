@@ -1,12 +1,129 @@
 # Methods
 
-<br>
+<dt><a name="MyPy8TML-init_html"><strong>init_html</strong></a>(self, title: str, lang: str, charset='UTF-8', inhead: str = '')</dt><p>Generates&nbsp;the&nbsp;stat&nbsp;of&nbsp;a&nbsp;html&nbsp;code&nbsp;until&nbsp;the&nbsp;body</p>
 
-##  **Dunder methods**
+````html
+<!DOCTYPE html>
+<html lang=":param lang:">
+<head>
+    :param inhead:
+    <meta charset=":param charset:">
+    <title>:param title:</title>
+</head>
+<body> {UNTIL HERE}
+````
 
-<dl><dt><a name="MyPy8TML-__add__"><strong>__add__</strong></a>(self, other: str)</dt><dd><tt>Add&nbsp;a&nbsp;string&nbsp;into&nbsp;a&nbsp;html, like to append</tt></dd></dl>
+<table>
+    <tr>
+        <td>title</td>
+        <td>title&nbsp;of&nbsp;your&nbsp;html&nbsp;page</td>
+    </tr>
+    <tr>
+        <td>lang</td>
+        <td>lang&nbsp;of&nbsp;html</td>
+    </tr>
+    <tr>
+        <td>charset</td>
+        <td>lcharset&nbsp;of&nbsp;html</td>
+    </tr>
+    <tr>
+        <td>inhead</td>
+        <td>puts&nbsp;content&nbsp;un&nbsp;head</td>
+    </tr>
+    <tr>
+        <td>return</td>
+        <td>self</td>
+    </tr>
+</table>
 
-<P> Use case: 
+<dl><dt><a name="MyPy8TML-set_filename"><strong>set_filename</strong></a>(self, name: str)</dt><dd>Set&nbsp;the&nbsp;name&nbsp;of&nbsp;output&nbsp;file</dd></dl>
+
+<dt><a name="MyPy8TML-simple_down"><strong>simple_down</strong></a>(self, times: int = 1)</dt><p>This&nbsp;method&nbsp;allows&nbsp;to&nbsp;jump&nbsp;for&nbsp;next&nbsp;line</p>
+
+<table>
+    <tr>
+        <td>times</td>
+        <td>Number&nbsp;of&nbsp;tags&nbsp;that&nbsp;you&nbsp;want&nbsp;to&nbsp;go&nbsp;down&nbsp;in&nbsp;a&nbsp;code if&nbsp;negative&nbsp;close&nbsp;tag&nbsp;inline</td>
+    </tr>
+    <tr>
+        <td>return</td>
+        <td> self </td>
+    </tr>
+</table>
+
+<dl><dt><a name="MyPy8TML-to_html"><strong>to_html</strong></a>(self, name: str, path: str = '') -&gt; None</dt><p>Export&nbsp;to&nbsp;Html</p>
+
+<table>
+    <tr>
+        <td>name</td>
+        <td>name&nbsp;of&nbsp;html&nbsp;code&nbsp;with&nbsp;sufix</td>
+    </tr>
+    <tr>
+        <td>path</td>
+        <td>path&nbsp;to&nbsp;put&nbsp;code&nbsp;with&nbsp;slash&nbsp;bar</td>
+    </tr>
+    <tr>
+        <td>return</td>
+        <td> None </td>
+    </tr>
+</table>
+
+<a name="MyPy8TML-content"><strong>content</strong></a>(self, content: str)<p>content&nbsp;to&nbsp;main&nbsp;html&nbsp;code</p>
+
+<dt><a name="MyPy8TML-downline"><strong>downline</strong></a>(self, times: int = 1)</dt>This&nbsp;method&nbsp;allows&nbsp;to&nbsp;close&nbsp;a&nbsp;tag<br>
+
+<table>
+    <tr>
+        <td>times</td>
+        <td>Number&nbsp;of&nbsp;tags&nbsp;that&nbsp;you&nbsp;want&nbsp;to&nbsp;go&nbsp;down&nbsp;in&nbsp;a&nbsp;code</td>
+    </tr>
+    <tr>
+        <td>return</td>
+        <td>self</td>
+    </tr>
+</table>
+
+<dt><a name="MyPy8TML-generate"><strong>generate</strong></a>(self) -&gt; str<dd><tt>This&nbsp;method&nbsp;generetes&nbsp;the&nbsp;html&nbsp;final&nbsp;code.</tt></dd></dl>
+
+<dt><a name="MyPy8TML-import_html"><strong>import_html</strong></a>(self, style_path, charset='UTF-8') -&gt; None</dt><p>Import html code from file code</p>
+
+<table>
+    <tr>
+        <td>style_path</td>
+        <td>Path&nbsp;to&nbsp;the&nbsp;css&nbsp;code</td>
+    </tr>
+    <tr>
+        <td>charset</td>
+        <td>encoding&nbsp;of&nbsp;css&nbsp;code</td>
+    </tr>
+    <tr>
+        <td>return</td>
+        <td>self</td>
+    </tr>
+</table>
+
+<dt><a name="MyPy8TML-import_style"><strong>import_style</strong></a>(self, style_path, encoding='UTF-8')</dt><p> Import style from css code </p>
+
+<table>
+    <tr>
+        <td>style_path</td>
+        <td>Path&nbsp;to&nbsp;the&nbsp;css&nbsp;code</td>
+    </tr>
+    <tr>
+        <td>encoding</td>
+        <td>encoding&nbsp;of&nbsp;css&nbsp;code</td>
+    </tr>
+    <tr>
+        <td>return</td>
+        <td>self</td>
+    </tr>
+</table>
+
+#  Dunder methods
+
+<dl><dt><a name="MyPy8TML-__add__"><strong>__add__</strong></a>(self, other: str)</dt><dd>Add&nbsp;a&nbsp;string&nbsp;into&nbsp;a&nbsp;html, like to append</dd></dl>
+
+<p> Use case: </p>
 
 ````python
 MyPy8TML + str
@@ -14,23 +131,20 @@ MyPy8TML + str
 
 <dl><dt><a name="MyPy8TML-__call__"><strong>__call__</strong></a>(self, times: int = 1, inline: str = '-')</dt><dd><tt> Closes the last htm tag, using times to close more than 1 , if negative closes inline</tt></dd></dl>
 
-<br>
+<p> Breaking line: </p>
 
-Breaking line:
 ````python
 html = MyPy8TML().p()
 print(html.generate())
 ````
-Inline:
+    Inline:
 ````python
 html = MyPy8TML().p(-1)
 print(html.generate())
 ````
 
-<br>
 
-
-<dl><dt><a name="MyPy8TML-__getitem__"><strong>__getitem__</strong></a>(self, item: str)</dt><dd><tt>The way to put content between tags<br>
+<dt><a name="MyPy8TML-__getitem__"><strong>__getitem__</strong></a>(self, item: str)</dt><p> The way to put content between tags </p>
 
 <table> 
     <tr>
@@ -48,49 +162,44 @@ print(html.generate())
 
 </table>
 
-Exemple:
+<p>Exemple:</p> 
+
 ````python
 html = MyPy8TML().p['Hello world ! ']
 print(html.generate())
 ````
-In:
+
+<p>In:</p>
+
 ````python
 html = MyPy8TML().p['class="hello-world"', 'in']
 print(html.generate())
 ````
-Out:
+<p>Out:</p>
+
 ````python
 html = MyPy8TML().p['Hello world ! ', 'out']
 print(html.generate())
 ````
 
-<br>
+# In properties
+
+<em> Use these properties to write into tags </em>
+
+<a name="MyPy8TML-in_content"><strong>in_content</strong></a>(self, content: str)<dd>
+<p> Puts content inside a tag </p>
 
 
-
-<dl><dt><a name="MyPy8TML-content"><strong>content</strong></a>(self, content: str)</dt><dd><tt>Add&nbsp;content&nbsp;to&nbsp;main&nbsp;html&nbsp;code</tt></dd></dl>
-
-<dl><dt><a name="MyPy8TML-downline"><strong>downline</strong></a>(self, times: int = 1)</dt><dd><tt>This&nbsp;method&nbsp;allows&nbsp;to&nbsp;close&nbsp;a&nbsp;tag<br>
-:param&nbsp;times:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;tags&nbsp;that&nbsp;you&nbsp;want&nbsp;to&nbsp;go&nbsp;down&nbsp;in&nbsp;a&nbsp;code<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;negative&nbsp;close&nbsp;tag&nbsp;inline<br>
-:return:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self</tt></dd></dl>
-
-<dl><dt><a name="MyPy8TML-generate"><strong>generate</strong></a>(self) -&gt; str</dt><dd><tt>This&nbsp;method&nbsp;generetes&nbsp;the&nbsp;html&nbsp;final&nbsp;code.</tt></dd></dl>
-
-<dl><dt><a name="MyPy8TML-import_html"><strong>import_html</strong></a>(self, style_path, charset='UTF-8') -&gt; None</dt><dd><tt>Import&nbsp;html&nbsp;code&nbsp;from&nbsp;file&nbsp;code<br>
-:param&nbsp;style_path:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Path&nbsp;to&nbsp;the&nbsp;css&nbsp;code<br>
-:param&nbsp;charset:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;encoding&nbsp;of&nbsp;css&nbsp;code<br>
-:return:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self</tt></dd></dl>
-
-<dl><dt><a name="MyPy8TML-import_style"><strong>import_style</strong></a>(self, style_path, encoding='UTF-8')</dt><dd><tt>Import&nbsp;style&nbsp;from&nbsp;css&nbsp;code<br>
-:param&nbsp;style_path:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Path&nbsp;to&nbsp;the&nbsp;css&nbsp;code<br>
-:param&nbsp;encoding:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;encoding&nbsp;of&nbsp;css&nbsp;code<br>
-:return:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self</tt></dd></dl>
-
-## In properties
-
-<em> All of this features 
-   </em>
+<table> 
+    <tr>
+        <th> content </th>
+        <th> any&nbsp;kind&nbsp;of&nbsp;content&nbsp;ex:&nbsp;class='just-a-class' </th>
+    </tr>
+    <tr>
+        <td>return</td>
+        <td>self</td>
+    </tr>
+</table>
 
 <dl><dt><a name="MyPy8TML-in_accesskey"><strong>in_accesskey</strong></a>(self, value: str)</dt></dl>
 
@@ -111,10 +220,6 @@ print(html.generate())
 <dl><dt><a name="MyPy8TML-in_cols"><strong>in_cols</strong></a>(self, value: str)</dt></dl>
 
 <dl><dt><a name="MyPy8TML-in_colspan"><strong>in_colspan</strong></a>(self, value: str)</dt></dl>
-
-<dl><dt><a name="MyPy8TML-in_content"><strong>in_content</strong></a>(self, content: str)</dt><dd><tt>Puts&nbsp;content&nbsp;inside&nbsp;a&nbsp;tag<br>
-:param&nbsp;content:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;any&nbsp;kind&nbsp;of&nbsp;content&nbsp;ex:&nbsp;class='just-a-class'<br>
-:return:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self</tt></dd></dl>
 
 <dl><dt><a name="MyPy8TML-in_for"><strong>in_for</strong></a>(self, value: str)</dt></dl>
 
@@ -150,22 +255,7 @@ print(html.generate())
 
 <dl><dt><a name="MyPy8TML-in_width"><strong>in_width</strong></a>(self, value: str)</dt></dl>
 
-<dl><dt><a name="MyPy8TML-init_html"><strong>init_html</strong></a>(self, title, lang: str, charset='UTF-8', inhead: str = '')</dt><dd><tt>Generates&nbsp;the&nbsp;stat&nbsp;of&nbsp;a&nbsp;html&nbsp;code&nbsp;until&nbsp;the&nbsp;bod<br>
-&nbsp;<br>
-&lt;!DOCTYPE&nbsp;html&gt;<br>
-&lt;html&nbsp;lang=":param&nbsp;lang:"}&gt;<br>
-&lt;head&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;:param&nbsp;inhead:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta&nbsp;charset=":param&nbsp;charset:"&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;:param&nbsp;title:&lt;/title&gt;<br>
-&lt;/head&gt;<br>
-&lt;body&gt;&nbsp;{UNTIL&nbsp;HERE}<br>
-&nbsp;<br>
-:param&nbsp;title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title&nbsp;of&nbsp;your&nbsp;html&nbsp;page<br>
-:param&nbsp;lang:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lang&nbsp;of&nbsp;html<br>
-:param&nbsp;charset:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;charset&nbsp;of&nbsp;html<br>
-:param&nbsp;inhead:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts&nbsp;content&nbsp;un&nbsp;head<br>
-:return:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self</tt></dd></dl>
+# Jinja in properties
 
 <dl><dt><a name="MyPy8TML-jnj"><strong>jnj</strong></a>(self, expretion)</dt></dl>
 
@@ -195,25 +285,11 @@ print(html.generate())
 
 <dl><dt><a name="MyPy8TML-sdnl"><strong>sdnl</strong></a> = <a href="#MyPy8TML-simple_down">simple_down</a>(self, times: int = 1)</dt></dl>
 
-<dl><dt><a name="MyPy8TML-set_filename"><strong>set_filename</strong></a>(self, name: str)</dt><dd><tt>Set&nbsp;the&nbsp;name&nbsp;of&nbsp;output&nbsp;file</tt></dd></dl>
-
-<dl><dt><a name="MyPy8TML-simple_down"><strong>simple_down</strong></a>(self, times: int = 1)</dt><dd><tt>This&nbsp;method&nbsp;allows&nbsp;to&nbsp;just&nbsp;jump&nbsp;for&nbsp;next&nbsp;line<br>
-:param&nbsp;times:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;tags&nbsp;that&nbsp;you&nbsp;want&nbsp;to&nbsp;go&nbsp;down&nbsp;in&nbsp;a&nbsp;code<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;negative&nbsp;close&nbsp;tag&nbsp;inline<br>
-:return:&nbsp;self</tt></dd></dl>
-
-<dl><dt><a name="MyPy8TML-to_html"><strong>to_html</strong></a>(self, name: str, path: str = '') -&gt; None</dt><dd><tt>Export&nbsp;to&nbsp;Html<br>
-:param&nbsp;name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;of&nbsp;html&nbsp;code&nbsp;with&nbsp;sufix<br>
-:param&nbsp;path:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;to&nbsp;put&nbsp;code&nbsp;with&nbsp;slash&nbsp;bar<br>
-:return:&nbsp;None</tt></dd></dl>
-
 
 <br>
 
 
-<br>
-
-<h1> Html tags </h1>
+# Html tags 
 
 <em> All html tags below are properties and return the SELF object. </em>
 
